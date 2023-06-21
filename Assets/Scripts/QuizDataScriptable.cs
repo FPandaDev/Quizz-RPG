@@ -6,11 +6,11 @@ using UnityEngine;
 
 public class QuizDataScriptable : ScriptableObject
 {
-    public List<Question> questions;
+    public List<Question2> questions;
 }
 
 [System.Serializable]
-public class Question
+public class Question2
 {
     public string question;
     public string correctAnswer;
