@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: Resta Level
   m_EditorClassIdentifier: 
   nameLevel: Resta
-  spriteLevel: {fileID: -1669740054, guid: 691599241ec006e4a833635e80bd1583, type: 3}
+  spriteLevel: {fileID: 1877132250, guid: 691599241ec006e4a833635e80bd1583, type: 3}
+  animator: {fileID: 9100000, guid: ca9fc4d8977bf244babeb3c503269091, type: 2}
+  sprite: {fileID: -1669740054, guid: 691599241ec006e4a833635e80bd1583, type: 3}

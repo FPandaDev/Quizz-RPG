@@ -55,8 +55,7 @@ public class LevelController : MonoBehaviour
 
     public void OnClickSelectLevel()
     {
-        PlayerPrefs.SetString("SelectedLevel", titleText.text);
-
+        GameManager.instance.LevelData = levelDataScriptables[currentLevelIndex];
         StartCoroutine(FadeToBlack());
     }
 

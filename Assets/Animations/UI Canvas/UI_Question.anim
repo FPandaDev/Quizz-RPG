@@ -71,7 +71,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.00012207031
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -139,7 +139,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: UI Panel
+    path: UI Bottom Panel
     classID: 224
     script: {fileID: 0}
     flags: 0
@@ -161,8 +161,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 1687628483
-      attribute: 38095219
+      path: 982349730
+      attribute: 538195251
       script: {fileID: 0}
       typeID: 224
       customType: 28
@@ -170,8 +170,8 @@ AnimationClip:
       isIntCurve: 0
       isSerializeReferenceCurve: 0
     - serializedVersion: 2
-      path: 194321473
-      attribute: 538195251
+      path: 1687628483
+      attribute: 38095219
       script: {fileID: 0}
       typeID: 224
       customType: 28
@@ -254,7 +254,7 @@ AnimationClip:
       m_Curve:
       - serializedVersion: 3
         time: 0
-        value: 0.00012207031
+        value: 0
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -322,7 +322,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: m_AnchoredPosition.y
-    path: UI Panel
+    path: UI Bottom Panel
     classID: 224
     script: {fileID: 0}
     flags: 0

@@ -31,4 +31,8 @@ public class GameManager : MonoBehaviour
 
     public string Name { get { return namePlayer; } set { namePlayer = value; } }
 
+    private static LevelDataScriptable levelData;
+
+    public LevelDataScriptable LevelData { get { return levelData; } set {  levelData = value; } }
+
 }
