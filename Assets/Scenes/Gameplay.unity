@@ -1204,6 +1204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e8e00f228d51f4499536b62e3fa32ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
+  attackDamage: 0
+  barHealth: {fileID: 0}
 --- !u!212 &331767802
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4587,8 +4590,8 @@ GameObject:
   - component: {fileID: 2030500640}
   - component: {fileID: 2030500639}
   m_Layer: 0
-  m_Name: Question Manager
-  m_TagString: Untagged
+  m_Name: Quizz Manager
+  m_TagString: QuizzManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

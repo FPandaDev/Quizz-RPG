@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "QuestionData", menuName = "QuestionData")]
-
+[CreateAssetMenu(fileName = "Question Data", menuName = "Question Data")]
 public class QuizDataScriptable : ScriptableObject
 {
     public List<Question2> questions;

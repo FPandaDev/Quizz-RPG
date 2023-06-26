@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e3d455810a35634ebba2c547709c25e
+guid: 691599241ec006e4a833635e80bd1583
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UI_0
+      name: Witch_idle_0
       rect:
         serializedVersion: 2
-        x: 1
-        y: 1
-        width: 96
-        height: 90
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 776a99aec3e0dc146963091e0e462439
-      internalID: -42187303
+      spriteID: 6d8f5c76025324c42bb94440ea785479
+      internalID: -1669740054
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_1
+      name: Witch_idle_1
       rect:
         serializedVersion: 2
-        x: 98
-        y: 76
-        width: 52
-        height: 14
+        x: 64
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 45781a470c858d8449a449392f636a2d
-      internalID: -819627438
+      spriteID: dea66fbf9976a8b49977cdbefed58e06
+      internalID: 1877132250
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_2
+      name: Witch_idle_2
       rect:
         serializedVersion: 2
-        x: 98
-        y: 61
-        width: 52
-        height: 14
+        x: 128
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0276649e93957b40bb85c6c43dfbf19
-      internalID: -517553727
+      spriteID: 7855e0707492d2243b698453c29d0848
+      internalID: -351843073
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_3
+      name: Witch_idle_3
       rect:
         serializedVersion: 2
-        x: 98
-        y: 44
-        width: 16
-        height: 16
+        x: 192
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,20 +200,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8f4af6690879c5409fb981bebab0be8
-      internalID: -1139820243
+      spriteID: eb7095fdb42d36c4b9b22f81ff8e5ac5
+      internalID: 1537158165
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_4
+      name: Witch_idle_4
       rect:
         serializedVersion: 2
-        x: 116
-        y: 44
-        width: 16
-        height: 16
+        x: 256
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -221,20 +221,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf42bf7576c99e44d84f4e187533e692
-      internalID: 1899770221
+      spriteID: b6d1655e3b7e895458f5a21185e84081
+      internalID: -748145203
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_5
+      name: Witch_idle_5
       rect:
         serializedVersion: 2
-        x: 134
-        y: 44
-        width: 16
-        height: 16
+        x: 320
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -242,20 +242,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 31629ec0177cae04cae1a11eb18001d7
-      internalID: 129242465
+      spriteID: 57d517194ee71bd4199afe09f050bd4d
+      internalID: -511194737
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: UI_6
+      name: Witch_idle_6
       rect:
         serializedVersion: 2
-        x: 98
-        y: 27
-        width: 16
-        height: 16
+        x: 384
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -263,71 +263,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d27173ca2e71afb4a86265de727e5018
-      internalID: -1273184442
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_7
-      rect:
-        serializedVersion: 2
-        x: 116
-        y: 27
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 268fe6f1c8a9e1341b87edd75c6a3963
-      internalID: -2041369786
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_8
-      rect:
-        serializedVersion: 2
-        x: 134
-        y: 27
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 016f607359047734e8fd8b27e82a5c55
-      internalID: 1343019341
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: UI_9
-      rect:
-        serializedVersion: 2
-        x: 100
-        y: 10
-        width: 48
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5465f2bf13071804e94d0257f560bda4
-      internalID: -200165815
+      spriteID: 04750172161f08c479711196f364c260
+      internalID: -1419371699
       vertices: []
       indices: 
       edges: []
@@ -343,16 +280,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      UI_0: -42187303
-      UI_1: -819627438
-      UI_2: -517553727
-      UI_3: -1139820243
-      UI_4: 1899770221
-      UI_5: 129242465
-      UI_6: -1273184442
-      UI_7: -2041369786
-      UI_8: 1343019341
-      UI_9: -200165815
+      Witch_idle_0: -1669740054
+      Witch_idle_1: 1877132250
+      Witch_idle_2: -351843073
+      Witch_idle_3: 1537158165
+      Witch_idle_4: -748145203
+      Witch_idle_5: -511194737
+      Witch_idle_6: -1419371699
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

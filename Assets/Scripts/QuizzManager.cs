@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class QuizzManager : MonoBehaviour
 {
@@ -65,6 +66,8 @@ public class QuizzManager : MonoBehaviour
         }
 
         canvasAnimator.SetTrigger("Answer");
+
+        SceneManager.LoadScene("GameOver");
     }
 
     private void ResetColorText()
