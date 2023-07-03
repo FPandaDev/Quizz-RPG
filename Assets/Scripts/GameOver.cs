@@ -5,10 +5,13 @@ using UnityEngine;
 
 public class GameOver : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI textName;
+    [SerializeField] private LevelLoader LevelLoader;
 
-    private void Start()
+    private void Update()
     {
-        textName.text = GameManager.instance.Name;
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            LevelLoader.LoadLevel();
+        }
     }
 }

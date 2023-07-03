@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Suma Level
   m_EditorClassIdentifier: 
   nameLevel: Suma
-  spriteLevel: {fileID: -1163886581, guid: 9de4ff1816f0ba7429bcec0ddc3b68d1, type: 3}
+  nameEnemy: Golem
   animator: {fileID: 9100000, guid: 408f50109f930f146ad844590aa8e1b4, type: 2}
-  sprite: {fileID: -1285460791, guid: 9de4ff1816f0ba7429bcec0ddc3b68d1, type: 3}
+  sprite: {fileID: -906501199, guid: 39e3e1ca4b90e2847872beef89a96674, type: 3}

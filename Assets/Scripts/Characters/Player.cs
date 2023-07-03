@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
     [Header("Stats Player")]
     [SerializeField] private float maxHealth;
     [SerializeField] private float attackDamage;
+    [SerializeField] private int shieldUses;
     [SerializeField] private bool isDefending;
 
     [Header("References")]
@@ -20,13 +21,16 @@ public class Player : MonoBehaviour
 
     public bool CanDefend { get { return canDefend; }
         set {
-                buttonDefend.interactable = true;
+                buttonDefend.interactable = value;
                 canDefend = value;
             }
         }
 
     private Animator anim;
     private QuizManager quizManager;
+
+    public bool hasShieldUses { get { return shieldUses > 0; } }
+    public bool isDead { get { return health <= 0; } }
 
     private void Start()
     {
@@ -57,14 +61,32 @@ public class Player : MonoBehaviour
         enemy.TakeDamage(attackDamage);
     }
 
+    public void CheckDeadEnemy()
+    {
+        if (enemy.isDead)
+        {
+            enemy.TriggerAnimation("Dead");
+        }
+        else
+        {
+            quizManager.SetButtonsActions(true);
+        }
+    }
+
     public void Defend()
     {
         if (canDefend)
         {
+            shieldUses--;
             buttonDefend.interactable = false;
             isDefending = true;
             TriggerAnimation("Defend");
         }
+    }
+
+    public void GameOver()
+    {
+        quizManager.SetGameOver();
     }
 
     public void TriggerAnimation(string nameAnim)

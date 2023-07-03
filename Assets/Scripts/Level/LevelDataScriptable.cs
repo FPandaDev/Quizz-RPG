@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class LevelDataScriptable : ScriptableObject
 {
     public string nameLevel;
-    public Sprite spriteLevel;
+    public string nameEnemy;
 
-    public RuntimeAnimatorController animator;
     public Sprite sprite;
+    public RuntimeAnimatorController animator;   
 }

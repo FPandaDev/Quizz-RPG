@@ -12,6 +12,8 @@ public class LevelController : MonoBehaviour
     [SerializeField] private TextMeshProUGUI titleText;
     [SerializeField] private Image spriteLevel;
 
+    [SerializeField] private Animator anim;
+
     [Header("Settings Fade")]
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
@@ -23,14 +25,16 @@ public class LevelController : MonoBehaviour
 
     private void Start()
     {
-        countLevels = levelDataScriptables.Count;
-        SetLevel();
+        countLevels = levelDataScriptables.Count;       
     }
 
-    private void SetLevel()
+    public void SetLevel()
     {
         titleText.text = levelDataScriptables[currentLevelIndex].nameLevel;
-        spriteLevel.sprite = levelDataScriptables[currentLevelIndex].spriteLevel;
+        //spriteLevel.sprite = levelDataScriptables[currentLevelIndex].spriteLevel;
+
+        string nameLevel = levelDataScriptables[currentLevelIndex].nameEnemy;
+        anim.SetTrigger(nameLevel);
     }
 
     public void OnClickPreviousLevel()
@@ -79,7 +83,7 @@ public class LevelController : MonoBehaviour
             yield return null;
         }
 
-        levelLoader.LoadLevel(levelLoader.nextSceneName);
+        levelLoader.LoadLevel();
         //SceneManager.LoadScene(1);
     }
 }

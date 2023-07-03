@@ -11,17 +11,9 @@ public class LevelLoader : MonoBehaviour
     public GameObject loadScenePanel;
     public Slider slider;
 
-    private void Update()
+    public void LoadLevel()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LoadLevel(nextSceneName);
-        }
-    }
-
-    public void LoadLevel(string sceneName)
-    {
-        StartCoroutine(LoadAsynchronously(sceneName));
+        StartCoroutine(LoadAsynchronously(nextSceneName));
     }
 
     IEnumerator LoadAsynchronously(string sceneName)

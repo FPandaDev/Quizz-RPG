@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
-using System;
+using UnityEngine.UI;
 
 public class QuizManager : MonoBehaviour
 {
@@ -22,10 +22,14 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private Color wrongColor;
 
     [SerializeField] private GameObject disableButtons;
+    [SerializeField] private Button[] buttonsActions;
+    [SerializeField] private float fadeDuration = 1.0f;
+    [SerializeField] private Image fadeImage;
 
     [Header("References Characters")]
     [SerializeField] private Player player;
     [SerializeField] private Enemy enemy;
+    [SerializeField] private LevelLoader levelLoader;
 
     //public GameObject panelRespuesta;
     //public GameObject panelResultado;
@@ -77,7 +81,7 @@ public class QuizManager : MonoBehaviour
         timerTimeOut -= Time.deltaTime;
         timerTimeOut = Mathf.Clamp(timerTimeOut, 0, timer);
 
-        timerText.text = MathF.Round(timerTimeOut).ToString();
+        timerText.text = Mathf.Round(timerTimeOut).ToString();
 
         if (timerTimeOut <= 0)
         {
@@ -98,12 +102,13 @@ public class QuizManager : MonoBehaviour
 
     public void OnClickSetQuestion()
     {
+        SetButtonsActions(false);
         ResetColorText();
 
         timerTimeOut = timer;
         isAnswering = true;
 
-        disableButtons.SetActive(false);
+        disableButtons.SetActive(false);      
         canvasAnimator.SetTrigger("Question");
 
         currentQuestion.GenerateQuestion();
@@ -145,8 +150,44 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            player.CanDefend = true;
+            player.CanDefend = player.hasShieldUses ? true : false;
             enemy.TriggerAnimation("Attack");
         }
-    }   
+    }
+
+    public void SetButtonsActions(bool active)
+    {
+        foreach (Button buttons in buttonsActions)
+        {
+            buttons.interactable = active;
+        }
+    }
+
+    public void SetGameOver()
+    {
+        StartCoroutine(GameOver());
+    }
+
+    private IEnumerator GameOver()
+    {
+        fadeImage.gameObject.SetActive(true);
+
+        float r = fadeImage.color.r;
+        float g = fadeImage.color.g;
+        float b = fadeImage.color.b;
+
+        fadeImage.color = new Color(r, g, b, 0f);
+
+        float elapsedTime = 0f;
+
+        while (elapsedTime < fadeDuration)
+        {
+            float alpha = Mathf.Lerp(0f, 1f, elapsedTime / fadeDuration);
+            fadeImage.color = new Color(r, g, b, alpha);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        levelLoader.LoadLevel();
+    }
 }

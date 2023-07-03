@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
 
     [Header("References")]
     [SerializeField] private Image barHealth;
-    [SerializeField] private Sprite sprite;
+    [SerializeField] private Image sprite;
     [SerializeField] private Player player;
 
     private float health;
@@ -19,13 +19,15 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private QuizManager quizManager;
 
+    public bool isDead { get { return health <= 0; } }
+
     private void Start()
     {
         anim = GetComponent<Animator>();
-        sprite = GetComponent<Sprite>();
+        //sprite = GetComponent<Sprite>();
 
         anim.runtimeAnimatorController = GameManager.instance.LevelData.animator;
-        sprite = GameManager.instance.LevelData.sprite;
+        sprite.sprite = GameManager.instance.LevelData.sprite;
 
         health = maxHealth;
 
@@ -44,6 +46,25 @@ public class Enemy : MonoBehaviour
     public void Attack()
     {
         player.TakeDamage(attackDamage);
+    }
+
+    public void CheckDeadPlayer()
+    {      
+        player.CanDefend = false;
+
+        if (player.isDead)
+        {
+            player.TriggerAnimation("Dead");
+        }
+        else
+        {
+            quizManager.SetButtonsActions(true);
+        }
+    }
+
+    public void GameOver()
+    {
+        quizManager.SetGameOver();
     }
 
     public void CompleteAttack()
