@@ -5018,7 +5018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIZ ADVENTURE
+  m_text: QUIZ RPG
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fc22f19579131e419aa5d58277eeee0, type: 2}
   m_sharedMaterial: {fileID: -5320328873268844990, guid: 2fc22f19579131e419aa5d58277eeee0, type: 2}
