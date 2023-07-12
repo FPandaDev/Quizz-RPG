@@ -10,5 +10,7 @@ public class LevelDataScriptable : ScriptableObject
     public string nameEnemy;
 
     public Sprite sprite;
-    public RuntimeAnimatorController animator;   
+    public RuntimeAnimatorController animator;
+
+    public QuizDataScriptable quizData;
 }

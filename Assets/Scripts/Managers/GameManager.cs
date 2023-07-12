@@ -34,5 +34,4 @@ public class GameManager : MonoBehaviour
     private static LevelDataScriptable levelData;
 
     public LevelDataScriptable LevelData { get { return levelData; } set {  levelData = value; } }
-
 }

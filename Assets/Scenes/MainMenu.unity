@@ -1710,6 +1710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   levelDataScriptables:
+  - {fileID: 11400000, guid: c086cbe8c26c69647bc6a3a786dc3f9f, type: 2}
   - {fileID: 11400000, guid: 59ad5ac943a799d44ba6c3003d0d66e9, type: 2}
   - {fileID: 11400000, guid: 09255936f21f33c4ba6e756003d4ee3d, type: 2}
   titleText: {fileID: 1137508515}
@@ -2144,7 +2145,7 @@ RectTransform:
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5017,7 +5018,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: QUIZZ RPG
+  m_text: QUIZ ADVENTURE
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2fc22f19579131e419aa5d58277eeee0, type: 2}
   m_sharedMaterial: {fileID: -5320328873268844990, guid: 2fc22f19579131e419aa5d58277eeee0, type: 2}
@@ -5044,8 +5045,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 150
-  m_fontSizeBase: 150
+  m_fontSize: 125
+  m_fontSizeBase: 125
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

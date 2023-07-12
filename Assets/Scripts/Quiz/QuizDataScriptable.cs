@@ -5,11 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Question Data", menuName = "Question Data")]
 public class QuizDataScriptable : ScriptableObject
 {
-    public List<Question2> questions;
+    public List<QuestionData> questions;
 }
 
 [System.Serializable]
-public class Question2
+public class QuestionData
 {
     public string question;
     public string correctAnswer;

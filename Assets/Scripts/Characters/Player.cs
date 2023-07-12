@@ -2,22 +2,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Player : MonoBehaviour
 { 
     [Header("Stats Player")]
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float attackDamage;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int attackDamage;
+    [SerializeField] private int criticalDamage;
     [SerializeField] private int shieldUses;
+    [SerializeField] private int potions;
     [SerializeField] private bool isDefending;
 
     [Header("References")]
     [SerializeField] private Image barHealth;
+    [SerializeField] private Button buttonHeal;
     [SerializeField] private Button buttonDefend;
     [SerializeField] private Enemy enemy;
+    [SerializeField] private RectTransform pivotTextPopup;
 
-    private float health;
+    [Header("UI")]
+    [SerializeField] private TextMeshProUGUI damageText;
+    [SerializeField] private TextMeshProUGUI criticalText;
+    [SerializeField] private TextMeshProUGUI shieldText;
+    [SerializeField] private TextMeshProUGUI potionText;
+
+    private int health;
     private bool canDefend;
+
+    private Animator anim;
+    private QuizManager quizManager;
 
     public bool CanDefend { get { return canDefend; }
         set {
@@ -26,10 +40,8 @@ public class Player : MonoBehaviour
             }
         }
 
-    private Animator anim;
-    private QuizManager quizManager;
-
     public bool hasShieldUses { get { return shieldUses > 0; } }
+    public bool canUsePotions { get { return potions > 0 && health < maxHealth; } }
     public bool isDead { get { return health <= 0; } }
 
     private void Start()
@@ -40,9 +52,27 @@ public class Player : MonoBehaviour
 
         GameObject go = GameObject.FindWithTag("QuizzManager");
         quizManager = go.GetComponent<QuizManager>();
+
+        damageText.text = attackDamage.ToString();
+        criticalText.text = string.Format("+{0}", criticalDamage);
+        shieldText.text = shieldUses.ToString();
+        potionText.text = potions.ToString();
+
+        buttonHeal.interactable = canUsePotions;
     }
 
-    public void TakeDamage(float dmg)
+    private void UpdateHealth(int newHealth, TypeText typeText)
+    {
+        health = Mathf.Clamp(health + newHealth, 0, maxHealth);
+        barHealth.fillAmount = (float)health / (float)maxHealth;
+
+        TextPopup textPopup = TextPopupPool.Instance.RequestPopup();
+        textPopup.transform.position = pivotTextPopup.position;
+
+        textPopup.Setup(Mathf.Abs(newHealth), typeText);
+    }
+
+    public void TakeDamage(int dmg)
     {
         if (isDefending)
         {
@@ -50,15 +80,19 @@ public class Player : MonoBehaviour
             return;
         }
 
-        health = Mathf.Clamp(health - dmg, 0, maxHealth);
-        barHealth.fillAmount = health / maxHealth;
+        UpdateHealth(-dmg, TypeText.NORMAL);
 
         TriggerAnimation("HitDamage");
     }
 
     public void Attack()
     {
-        enemy.TakeDamage(attackDamage);
+        bool isCritical = Random.value < quizManager.TimerTimeOut;
+
+        if (isCritical)
+            enemy.TakeDamage(attackDamage + criticalDamage, TypeText.CRITICAL);
+        else
+            enemy.TakeDamage(attackDamage, TypeText.NORMAL);
     }
 
     public void CheckDeadEnemy()
@@ -69,7 +103,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            quizManager.SetButtonsActions(true);
+            quizManager.SetButtonsActive();
         }
     }
 
@@ -78,9 +112,23 @@ public class Player : MonoBehaviour
         if (canDefend)
         {
             shieldUses--;
+            shieldText.text = shieldUses.ToString();        
+
             buttonDefend.interactable = false;
             isDefending = true;
             TriggerAnimation("Defend");
+        }
+    }
+
+    public void Heal()
+    {
+        if (potions > 0)
+        {
+            potions--;
+            potionText.text = potions.ToString();
+
+            UpdateHealth(10, TypeText.HEAL);
+            buttonHeal.interactable = canUsePotions;
         }
     }
 

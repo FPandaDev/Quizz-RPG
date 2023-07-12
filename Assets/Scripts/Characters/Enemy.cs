@@ -6,15 +6,16 @@ using UnityEngine.UI;
 public class Enemy : MonoBehaviour
 {
     [Header("Stats Player")]
-    [SerializeField] private float maxHealth;
-    [SerializeField] private float attackDamage;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int attackDamage;
 
     [Header("References")]
     [SerializeField] private Image barHealth;
     [SerializeField] private Image sprite;
     [SerializeField] private Player player;
+    [SerializeField] private RectTransform pivotTextPopup;
 
-    private float health;
+    private int health;
 
     private Animator anim;
     private QuizManager quizManager;
@@ -35,10 +36,15 @@ public class Enemy : MonoBehaviour
         quizManager = go.GetComponent<QuizManager>();
     }
 
-    public void TakeDamage(float dmg)
+    public void TakeDamage(int dmg, TypeText typeText)
     {
         health = Mathf.Clamp(health - dmg, 0, maxHealth);
-        barHealth.fillAmount = health / maxHealth;
+        barHealth.fillAmount = (float)health / (float)maxHealth;
+
+        TextPopup textPopup = TextPopupPool.Instance.RequestPopup();
+        textPopup.transform.position = pivotTextPopup.position;
+
+        textPopup.Setup(dmg, typeText);
 
         TriggerAnimation("HitDamage");
     }
@@ -58,7 +64,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            quizManager.SetButtonsActions(true);
+            quizManager.SetButtonsActive();
         }
     }
 

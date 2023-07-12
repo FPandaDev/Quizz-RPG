@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class Question
 {
     protected int minNumber;
@@ -11,11 +12,7 @@ public class Question
     protected int result;
     protected string question;
 
-    protected int[] options = new int[4];
-
-
-    public Question(int _minNumber, int _maxNumber) { }
-
+    protected string[] options = new string[4];
 
     public virtual void GenerateQuestion() { }
     public virtual void GenerateOptions() { }
@@ -23,11 +20,11 @@ public class Question
 
     public int _correctAnswerIndex { get { return correctAnswerIndex;  } }
     public string _Question { get { return question; } }
-    public int[] _Options { get { return options; } }
+    public string[] _Options { get { return options; } }
 
 
     public bool CheckAnswer(int userResponse)
     {
-        return result == userResponse;
+        return _correctAnswerIndex == userResponse;
     }
 }

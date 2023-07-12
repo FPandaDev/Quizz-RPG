@@ -4,16 +4,15 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class QuizManager : MonoBehaviour
 {
-    [SerializeField] private Animator canvasAnimator;
-
     [SerializeField] private float timer;
-
     [SerializeField] private int minRange;
     [SerializeField] private int maxRange;
 
+    [Header("TEXTS")]
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private TextMeshProUGUI questionText;
     [SerializeField] private TextMeshProUGUI[] optionsText;
@@ -21,15 +20,23 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private Color correctColor;
     [SerializeField] private Color wrongColor;
 
-    [SerializeField] private GameObject disableButtons;
-    [SerializeField] private Button[] buttonsActions;
+    [Header("BUTTONS")]   
+    [SerializeField] private Button buttonAttack;
+    [SerializeField] private Button buttonHeal;
+    [SerializeField] private Button buttonQuit;
+
+    [Header("FADE")]
     [SerializeField] private float fadeDuration = 1.0f;
     [SerializeField] private Image fadeImage;
 
-    [Header("References Characters")]
+    [Header("REFERENCES")]
     [SerializeField] private Player player;
     [SerializeField] private Enemy enemy;
     [SerializeField] private LevelLoader levelLoader;
+
+    [Header("PANELS")]
+    [SerializeField] private GameObject panelStart;
+    [SerializeField] private GameObject disableButtons;
 
     //public GameObject panelRespuesta;
     //public GameObject panelResultado;
@@ -37,6 +44,7 @@ public class QuizManager : MonoBehaviour
     //public TextMeshProUGUI resultadoText;
 
     private float timerTimeOut;
+    public float TimerTimeOut { get { return timerTimeOut / (timer + 10f); } }
 
     private bool isAnswering;
     private bool isCorrect;
@@ -45,10 +53,14 @@ public class QuizManager : MonoBehaviour
     private int countCorrectAnswers;
     private int counWrongAnswers;
 
+    private Animator canvasAnimator;
     private Question currentQuestion;
 
     private void Start()
     {
+        canvasAnimator = GetComponent<Animator>();
+        panelStart.SetActive(true);
+
         CreateQuestionClass();
     }
 
@@ -72,6 +84,10 @@ public class QuizManager : MonoBehaviour
 
             case "Resta":
                 currentQuestion = new QuestionSubtraction(minRange, maxRange);
+                break;
+
+            case "General":
+                currentQuestion = new QuestionGeneral(GameManager.instance.LevelData.quizData);
                 break;
         }
     }  
@@ -102,7 +118,7 @@ public class QuizManager : MonoBehaviour
 
     public void OnClickSetQuestion()
     {
-        SetButtonsActions(false);
+        SetButtonsDesactive();
         ResetColorText();
 
         timerTimeOut = timer;
@@ -116,7 +132,7 @@ public class QuizManager : MonoBehaviour
 
         for (int i = 0; i < optionsText.Length; i++)
         {
-            optionsText[i].text = currentQuestion._Options[i].ToString();
+            optionsText[i].text = currentQuestion._Options[i];
         }
     }
 
@@ -125,7 +141,7 @@ public class QuizManager : MonoBehaviour
         disableButtons.SetActive(true);
         isAnswering = false;
 
-        if (currentQuestion.CheckAnswer(currentQuestion._Options[_optionIndex]))
+        if (currentQuestion.CheckAnswer(_optionIndex))
         {           
             optionsText[_optionIndex].color = correctColor;
             isCorrect = true;
@@ -137,12 +153,21 @@ public class QuizManager : MonoBehaviour
             isCorrect = false;
         }
 
-        canvasAnimator.SetTrigger("Answer");
+        StartCoroutine(ShowAnswers());
 
         //SceneManager.LoadScene("GameOver");
     }
 
-    public void AnimationAnswer()
+    private IEnumerator ShowAnswers()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        canvasAnimator.SetTrigger("Answer");
+
+        yield return new WaitForSecondsRealtime(0.5f);
+        AnimationAnswer();
+    }
+
+    private void AnimationAnswer()
     {
         if (isCorrect)
         {
@@ -155,12 +180,18 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    public void SetButtonsActions(bool active)
+    public void SetButtonsActive()
     {
-        foreach (Button buttons in buttonsActions)
-        {
-            buttons.interactable = active;
-        }
+        buttonAttack.interactable = true;
+        buttonHeal.interactable = player.canUsePotions;
+        buttonQuit.interactable = true;
+    }
+
+    public void SetButtonsDesactive()
+    {
+        buttonAttack.interactable = false;
+        buttonHeal.interactable = false;
+        buttonQuit.interactable = false;
     }
 
     public void SetGameOver()

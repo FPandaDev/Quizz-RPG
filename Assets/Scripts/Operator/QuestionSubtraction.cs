@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class QuestionSubtraction : Question
 {
-    public QuestionSubtraction(int _minNumber, int _maxNumber) : base(0, 0)
+    public QuestionSubtraction(int _minNumber, int _maxNumber)
     {
         this.minNumber = _minNumber;
         this.maxNumber = _maxNumber;
@@ -26,7 +26,7 @@ public class QuestionSubtraction : Question
     {
         correctAnswerIndex = Random.Range(0, options.Length);
 
-        options[correctAnswerIndex] = result;
+        options[correctAnswerIndex] = result.ToString();
 
         for (int i = 0; i < options.Length; i++)
         {
@@ -39,7 +39,7 @@ public class QuestionSubtraction : Question
                     incorrectOption = Random.Range(minNumber, maxNumber * 2 + 1);
                 }
 
-                options[i] = incorrectOption;
+                options[i] = incorrectOption.ToString();
             }
         }
     }
