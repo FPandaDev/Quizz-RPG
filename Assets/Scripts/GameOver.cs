@@ -9,9 +9,11 @@ public class GameOver : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            LevelLoader.LoadLevel();
-        }
+        
+    }
+
+    public void BackMenu()
+    {
+        LevelLoader.LoadLevel();
     }
 }
