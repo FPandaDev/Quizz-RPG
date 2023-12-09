@@ -17,14 +17,12 @@ public class Question
     public virtual void GenerateQuestion() { }
     public virtual void GenerateOptions() { }
 
-
-    public int _correctAnswerIndex { get { return correctAnswerIndex;  } }
+    public int CorrectAnswerIndex { get { return correctAnswerIndex;  } }
     public string _Question { get { return question; } }
-    public string[] _Options { get { return options; } }
-
+    public string[] Options { get { return options; } }
 
     public bool CheckAnswer(int userResponse)
     {
-        return _correctAnswerIndex == userResponse;
+        return CorrectAnswerIndex == userResponse;
     }
 }

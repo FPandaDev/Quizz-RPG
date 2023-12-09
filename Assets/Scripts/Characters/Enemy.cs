@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,11 +19,10 @@ public class Enemy : MonoBehaviour
     private int health;
 
     private Animator anim;
-    private QuizManager quizManager;
 
-    public bool isDead { get { return health <= 0; } }
+    public bool IsDead { get { return health <= 0; } }
 
-    private void Start()
+    void Start()
     {
         anim = GetComponent<Animator>();
         //sprite = GetComponent<Sprite>();
@@ -31,9 +31,6 @@ public class Enemy : MonoBehaviour
         sprite.sprite = GameManager.instance.LevelData.sprite;
 
         health = maxHealth;
-
-        GameObject go = GameObject.FindWithTag("QuizzManager");
-        quizManager = go.GetComponent<QuizManager>();
     }
 
     public void TakeDamage(int dmg, TypeText typeText)
@@ -58,19 +55,19 @@ public class Enemy : MonoBehaviour
     {      
         player.CanDefend = false;
 
-        if (player.isDead)
+        if (player.IsDead)
         {
             player.TriggerAnimation("Dead");
         }
         else
         {
-            quizManager.SetButtonsActive();
+            QuizManager.Instance.SetButtonsActive();
         }
     }
 
     public void GameOver()
     {
-        quizManager.SetGameOver();
+        QuizManager.Instance.SetGameOver();
     }
 
     public void CompleteAttack()

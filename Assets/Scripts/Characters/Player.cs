@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     private bool canDefend;
 
     private Animator anim;
-    private QuizManager quizManager;
 
     public bool CanDefend { get { return canDefend; }
         set {
@@ -40,25 +39,22 @@ public class Player : MonoBehaviour
             }
         }
 
-    public bool hasShieldUses { get { return shieldUses > 0; } }
-    public bool canUsePotions { get { return potions > 0 && health < maxHealth; } }
-    public bool isDead { get { return health <= 0; } }
+    public bool HasShieldUses { get { return shieldUses > 0; } }
+    public bool CanUsePotions { get { return potions > 0 && health < maxHealth; } }
+    public bool IsDead { get { return health <= 0; } }
 
-    private void Start()
+    void Start()
     {
         anim = GetComponent<Animator>();
 
         health = maxHealth;
 
-        GameObject go = GameObject.FindWithTag("QuizzManager");
-        quizManager = go.GetComponent<QuizManager>();
-
         damageText.text = attackDamage.ToString();
-        criticalText.text = string.Format("+{0}", criticalDamage);
+        criticalText.text = $"+{criticalDamage}";
         shieldText.text = shieldUses.ToString();
         potionText.text = potions.ToString();
 
-        buttonHeal.interactable = canUsePotions;
+        buttonHeal.interactable = CanUsePotions;
     }
 
     private void UpdateHealth(int newHealth, TypeText typeText)
@@ -87,7 +83,7 @@ public class Player : MonoBehaviour
 
     public void Attack()
     {
-        bool isCritical = Random.value < quizManager.TimerTimeOut;
+        bool isCritical = Random.value < QuizManager.Instance.TimerTimeOut;
 
         if (isCritical)
             enemy.TakeDamage(attackDamage + criticalDamage, TypeText.CRITICAL);
@@ -97,17 +93,17 @@ public class Player : MonoBehaviour
 
     public void CheckDeadEnemy()
     {
-        if (enemy.isDead)
+        if (enemy.IsDead)
         {
             enemy.TriggerAnimation("Dead");
         }
         else
         {
-            quizManager.SetButtonsActive();
+            QuizManager.Instance.SetButtonsActive();
         }
     }
 
-    public void Defend()
+    public void OnClickDefend()
     {
         if (canDefend)
         {
@@ -120,7 +116,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void Heal()
+    public void OnClickHeal()
     {
         if (potions > 0)
         {
@@ -128,13 +124,13 @@ public class Player : MonoBehaviour
             potionText.text = potions.ToString();
 
             UpdateHealth(10, TypeText.HEAL);
-            buttonHeal.interactable = canUsePotions;
+            buttonHeal.interactable = CanUsePotions;
         }
     }
 
     public void GameOver()
     {
-        quizManager.SetGameOver();
+        QuizManager.Instance.SetGameOver();
     }
 
     public void TriggerAnimation(string nameAnim)

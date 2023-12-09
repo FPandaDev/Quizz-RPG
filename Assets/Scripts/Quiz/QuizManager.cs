@@ -2,9 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using Unity.VisualScripting;
 
 public class QuizManager : MonoBehaviour
 {
@@ -38,11 +36,6 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private GameObject panelStart;
     [SerializeField] private GameObject disableButtons;
 
-    //public GameObject panelRespuesta;
-    //public GameObject panelResultado;
-
-    //public TextMeshProUGUI resultadoText;
-
     private float timerTimeOut;
     public float TimerTimeOut { get { return timerTimeOut / (timer + 10f); } }
 
@@ -56,7 +49,19 @@ public class QuizManager : MonoBehaviour
     private Animator canvasAnimator;
     private Question currentQuestion;
 
-    private void Start()
+    #region SINGLETON
+    public static QuizManager Instance { get; private set; }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+    }
+    #endregion
+
+    void Start()
     {
         canvasAnimator = GetComponent<Animator>();
         panelStart.SetActive(true);
@@ -64,7 +69,7 @@ public class QuizManager : MonoBehaviour
         CreateQuestionClass();
     }
 
-    private void Update()
+    void Update()
     {
         if (isAnswering)
         {
@@ -116,7 +121,7 @@ public class QuizManager : MonoBehaviour
         }
     }
 
-    public void OnClickSetQuestion()
+    public void OnClickAttack()
     {
         SetButtonsDesactive();
         ResetColorText();
@@ -132,30 +137,28 @@ public class QuizManager : MonoBehaviour
 
         for (int i = 0; i < optionsText.Length; i++)
         {
-            optionsText[i].text = currentQuestion._Options[i];
+            optionsText[i].text = currentQuestion.Options[i];
         }
     }
 
-    public void OnClickCheckAnswer(int _optionIndex)
+    public void OnClickAnswer(int index)
     {
         disableButtons.SetActive(true);
         isAnswering = false;
 
-        if (currentQuestion.CheckAnswer(_optionIndex))
+        if (currentQuestion.CheckAnswer(index))
         {           
-            optionsText[_optionIndex].color = correctColor;
+            optionsText[index].color = correctColor;
             isCorrect = true;
         }
         else
         {
-            optionsText[_optionIndex].color = wrongColor;
-            optionsText[currentQuestion._correctAnswerIndex].color = correctColor;
+            optionsText[index].color = wrongColor;
+            optionsText[currentQuestion.CorrectAnswerIndex].color = correctColor;
             isCorrect = false;
         }
 
         StartCoroutine(ShowAnswers());
-
-        //SceneManager.LoadScene("GameOver");
     }
 
     private IEnumerator ShowAnswers()
@@ -175,7 +178,7 @@ public class QuizManager : MonoBehaviour
         }
         else
         {
-            player.CanDefend = player.hasShieldUses ? true : false;
+            player.CanDefend = player.HasShieldUses;
             enemy.TriggerAnimation("Attack");
         }
     }
@@ -183,7 +186,7 @@ public class QuizManager : MonoBehaviour
     public void SetButtonsActive()
     {
         buttonAttack.interactable = true;
-        buttonHeal.interactable = player.canUsePotions;
+        buttonHeal.interactable = player.CanUsePotions;
         buttonQuit.interactable = true;
     }
 

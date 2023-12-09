@@ -5,7 +5,7 @@ public class StartPanelController : MonoBehaviour
     [SerializeField] private Animator anim;
     [SerializeField] private GameObject startPanel;
 
-    private void Start()
+    void Start()
     {
         string nameLevel = GameManager.instance.LevelData.nameEnemy;
         anim.SetTrigger(nameLevel);
